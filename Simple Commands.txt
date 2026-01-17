@@ -1,0 +1,20 @@
+-- Show total amount paid per specific date range
+SELECT TOTAL(AmountPaid) AS total_paid
+FROM orders_quebec
+WHERE OrderDate BETWEEN '2023-03-17' AND '2023-10-16';
+
+-- Show total amount paid by customer during whole time
+SELECT CustomerName, TOTAL(AmountPaid) AS total_amount
+FROM orders_quebec
+GROUP BY CustomerName;
+
+-- Show total amount spent my customer during specific date range
+SELECT OrderDate, CustomerName, TOTAL(AmountPaid) AS total_amount
+FROM orders_quebec
+WHERE OrderDate BETWEEN '2023-04-06' AND '2023-10-17'
+GROUP BY CustomerName;
+
+-- Show total each items sold in each city
+SELECT City, Item, Total(UnitsSold) AS total_units
+FROM orders_quebec
+GROUP BY City, Item;
